@@ -9,14 +9,19 @@ namespace Student
     public class Products //container class
     {
         private List<Product> lstproducts;
-        //adding an indexer
-        public Product this[int i] => lstproducts[i];
-
         public Products() 
         {
             //a list is instantiated
             lstproducts = new List<Product>();
 
+        }
+        //declaring an int indexer ('below the constructor')
+        public Product this[int indxr] 
+        {
+            get
+            {
+                return lstproducts[indxr];
+            }
         }
         public void Add(Product _product)
         {
@@ -64,33 +69,31 @@ namespace Student
         }
         public decimal TotalOriginalVolumeC()
         {
-            Volume v1 = lstproducts[0].Volume;
-            Volume v2 = lstproducts[1].Volume;
-            Volume v3 = lstproducts[2].Volume;
-            Volume v4 = lstproducts[3].Volume;
-            Volume v5 = lstproducts[4].Volume;
+            Volume resVol=null;
+            Volume volume = lstproducts[0].Volume;
+            for (int indxr = 1; indxr < lstproducts.Count; indxr++)
+            {
 
-            Volume total1 = v1 + v2;
-            Volume total2 = v3 + v4;
-            Volume total3 = total2 + v5;
-            
-            return decimal.Parse(total3.dm3.ToString());
-
+                Volume _volume = lstproducts[indxr].Volume;
+                resVol = volume + _volume;
+                volume = resVol;
+                
+            }
+            return resVol.dm3;
         }
         public decimal TotalReducedVolumeC()
         {
-            //creating 5 volume instances and adding them, but cant do so dynamically(issue)
-            Volume v1 = lstproducts[0].Volume;
-            Volume v2 = lstproducts[1].Volume;
-            Volume v3 = lstproducts[2].Volume;
-            Volume v4 = lstproducts[3].Volume;
-            Volume v5 = lstproducts[4].Volume;
+            Volume resVol = null;
+            Volume volume = lstproducts[0].Volume;
+            for (int indxr = 1; indxr < lstproducts.Count; indxr++)
+            {
 
-            Volume total1 = v1 + v2;
-            Volume total2 = v3 + v4;
-            Volume total3 = total2 + v5;
-            //returning the reduced volume property of the 'resultant' volume
-            return decimal.Parse(total3.ReducedVolume.ToString());
+                Volume _volume = lstproducts[indxr].Volume;
+                resVol = volume + _volume;
+                volume = resVol;
+
+            }
+            return resVol.ReducedVolume;
         }
     }
 
