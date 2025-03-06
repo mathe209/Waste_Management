@@ -69,31 +69,48 @@ namespace Student
         }
         public decimal TotalOriginalVolumeC()
         {
-            Volume resVol=null;
-            Volume volume = lstproducts[0].Volume;
-            for (int indxr = 1; indxr < lstproducts.Count; indxr++)
+            try
             {
+                Volume resVol = null;
+                Volume volume = lstproducts[0].Volume;
 
-                Volume _volume = lstproducts[indxr].Volume;
-                resVol = volume + _volume;
-                volume = resVol;
-                
+                for (int indxr = 1; indxr < lstproducts.Count; indxr++)
+                {
+                    Volume _volume = lstproducts[indxr].Volume;
+                    resVol = volume + _volume;
+                    volume = resVol;
+
+                }
+                return resVol.dm3;
             }
-            return resVol.dm3;
+            catch (Exception e) 
+            {
+                return 0;
+            }
+
+
         }
         public decimal TotalReducedVolumeC()
         {
-            Volume resVol = null;
-            Volume volume = lstproducts[0].Volume;
-            for (int indxr = 1; indxr < lstproducts.Count; indxr++)
+            try
             {
+                Volume resVol = null;
+                Volume volume = lstproducts[0].Volume;
+                for (int indxr = 1; indxr < lstproducts.Count; indxr++)
+                {
 
-                Volume _volume = lstproducts[indxr].Volume;
-                resVol = volume + _volume;
-                volume = resVol;
+                    Volume _volume = lstproducts[indxr].Volume;
+                    resVol = volume + _volume;
+                    volume = resVol;
 
+                }
+                return resVol.ReducedVolume;
             }
-            return resVol.ReducedVolume;
+            catch (Exception e)
+            {
+                return 0;
+            }
+
         }
     }
 
